@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LH Bank Agri Tech</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #1b5e20;
+            --accent: #ffeb3b;
+            --light: #f1f8e9;
+            --dark: #1a1a1a;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://farmonaut.com/wp-content/uploads/2024/10/Revolutionizing-Agriculture-How-Farmonauts-AI-Driven-Precision-Farming-Solutions-Boost-Crop-Yields-and-Sustainability_1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .stats {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.beauhurst.com/wp-content/uploads/2025/03/the-uks-top-agritech-companies-head.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .chart-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+        
+        .chart {
+            display: flex;
+            height: 300px;
+            align-items: flex-end;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+        
+        .chart-bar {
+            width: 60px;
+            background-color: var(--primary);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: height 1s ease;
+        }
+        
+        .chart-bar:hover {
+            background-color: var(--accent);
+        }
+        
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100px;
+        }
+        
+        .chart-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .chart-bar:hover .chart-value {
+            opacity: 1;
+        }
+        
+        .cta {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://web-assets.bcg.com/fb/8b/8a2ee56b4fcdaaeb31d7946a8b04/what-1-000-farmers-told-us-about-tech-adoption-rectangle.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta h2 {
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                transition: left 0.3s ease;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">LH Bank <span>Agri Tech</span></a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#stats">Stats</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to the Future of Farming!</h1>
+                <p>Thailand's agricultural sector is undergoing a revolution, and we're here to help you understand and participate in it. This is a summary of LH Bank's report on AgriTech opportunities.</p>
+                <a href="#features" class="btn">Explore More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Points</h2>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://farmonaut.com/wp-content/uploads/2024/10/Revolutionizing-Agriculture-How-Farmonauts-AI-Driven-Precision-Farming-Solutions-Boost-Crop-Yields-and-Sustainability_1.jpg" alt="Agriculture 4.0">
+                    </div>
+                    <div class="card-content">
+                        <h3>Agriculture 4.0</h3>
+                        <p>Thailand's agriculture is evolving from traditional methods to Agriculture 4.0, embracing new technologies like drones, smart equipment, and IoT. This shift addresses labor shortages and improves resource management.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://www.beauhurst.com/wp-content/uploads/2025/03/the-uks-top-agritech-companies-head.png" alt="Smart Farming Growth">
+                    </div>
+                    <div class="card-content">
+                        <h3>Smart Farming Growth</h3>
+                        <p>The industry is seeing a rise in smart farming technologies, particularly hardware and machinery, fueled by expanding 5G network coverage.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://alliancebioversityciat.org/sites/default/files/styles/1920_scale/public/a4ip-2.png?itok=loIh9YGL" alt="Drone Technology">
+                    </div>
+                    <div class="card-content">
+                        <h3>Drone Technology</h3>
+                        <p>Drones are becoming increasingly popular, offering solutions for monitoring crops and spraying with greater efficiency and cost savings.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://web-assets.bcg.com/fb/8b/8a2ee56b4fcdaaeb31d7946a8b04/what-1-000-farmers-told-us-about-tech-adoption-rectangle.jpg" alt="SME Opportunities">
+                    </div>
+                    <div class="card-content">
+                        <h3>SME Opportunities</h3>
+                        <p>Small and medium-sized enterprises (SMEs) are emerging as key players, especially in the manufacturing of tractors and other agricultural machinery.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://alliancebioversityciat.org/sites/default/files/styles/1920_scale/public/a4ip-2.png?itok=loIh9YGL" alt="Government Support">
+                    </div>
+                    <div class="card-content">
+                        <h3>Government Support</h3>
+                        <p>Government initiatives, including tax exemptions and investment incentives, are supporting the adoption of modern agricultural practices.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://farmonaut.com/wp-content/uploads/2024/10/Revolutionizing-Agriculture-How-Farmonauts-AI-Driven-Precision-Farming-Solutions-Boost-Crop-Yields-and-Sustainability_1.jpg" alt="Challenges Ahead">
+                    </div>
+                    <div class="card-content">
+                        <h3>Challenges Ahead</h3>
+                        <p>While opportunities abound, challenges remain, such as the need to bridge the knowledge gap among farmers and address infrastructure limitations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section stats" id="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>AgriTech Growth</h2>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3 id="stat1">0</h3>
+                    <p>Drone Adoption Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="stat2">0</h3>
+                    <p>Smart Farming Growth</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="stat3">0</h3>
+                    <p>SME Participation</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="stat4">0</h3>
+                    <p>Yield Improvement</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h3>Technology Adoption Rate (2020-2025)</h3>
+                <div class="chart">
+                    <div class="chart-bar" style="height: 0%;">
+                        <div class="chart-value">45%</div>
+                        <div class="chart-label">Drones</div>
+                    </div>
+                    <div class="chart-bar" style="height: 0%;">
+                        <div class="chart-value">65%</div>
+                        <div class="chart-label">IoT Sensors</div>
+                    </div>
+                    <div class="chart-bar" style="height: 0%;">
+                        <div class="chart-value">38%</div>
+                        <div class="chart-label">Smart Irrigation</div>
+                    </div>
+                    <div class="chart-bar" style="height: 0%;">
+                        <div class="chart-value">72%</div>
+                        <div class="chart-label">Data Analytics</div>
+                    </div>
+                    <div class="chart-bar" style="height: 0%;">
+                        <div class="chart-value">55%</div>
+                        <div class="chart-label">Automation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About LH Bank Agri Tech</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://alliancebioversityciat.org/sites/default/files/styles/1920_scale/public/a4ip-2.png?itok=loIh9YGL" alt="About Us">
+                </div>
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>At LH Bank Agri Tech, we're committed to bridging the gap between traditional farming practices and cutting-edge technology. Our mission is to empower Thai farmers with the knowledge, tools, and financial support they need to thrive in the Agriculture 4.0 era.</p>
+                    <p>Through our comprehensive research and partnerships with technology providers, we offer tailored solutions that address the unique challenges faced by Thailand's agricultural sector.</p>
+                    <p>Our team of experts works closely with farmers, SMEs, and government agencies to create a sustainable ecosystem that promotes innovation, efficiency, and prosperity in agriculture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Farming Practices?</h2>
+            <a href="#" class="btn">Contact Us Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Copyright 2025 LH Bank Agri Tech</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Scroll header effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    nav.classList.remove('active');
+                }
+            });
+        });
+        
+        // Animate stats counter
+        function animateStats() {
+            const stats = [
+                { id: 'stat1', target: 85, suffix: '%' },
+                { id: 'stat2', target: 127, suffix: '%' },
+                { id: 'stat3', target: 68, suffix: '%' },
+                { id: 'stat4', target: 42, suffix: '%' }
+            ];
+            
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.id);
+                let current = 0;
+                const increment = stat.target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= stat.target) {
+                        current = stat.target;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(current) + stat.suffix;
+                }, 30);
+            });
+        }
+        
+        // Animate chart bars
+        function animateChartBars() {
+            const bars = document.querySelectorAll('.chart-bar');
+            const heights = [45, 65, 38, 72, 55];
+            
+            bars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.height = heights[index] + '%';
+                }, index * 200);
+            });
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateChartBars();
+                    chartObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        statsObserver.observe(document.querySelector('.stats-container'));
+        chartObserver.observe(document.querySelector('.chart'));
+    </script>
+</body>
+</html>
